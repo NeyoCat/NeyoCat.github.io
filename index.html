@@ -1,18 +1,116 @@
-<p id="demo"></p>
-<script>
-var countDownDate = new Date("Aug 28, 2018 23:35:00").getTime();
-var x = setInterval(function() {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "She Gone";
+<html>
+  <style>
+
+  .sidebar{
+    z-index: 1;
+    height: 100%;
+    width: 180px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #505050;
+    overflow-x: hidden;
+    padding-top: 70px;
   }
-}, 1000);
-</script>
+
+  .sidebar button{
+    background-color: #505050;
+    color: #444;
+    outline: none;
+    border: none;
+    padding: 14px 8px 12px 16px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #f1f1f1;
+    display: block;
+  }
+
+  .sidebar button:hover{
+    color: #83C929;
+  }
+
+  .Title{
+    background-color: #83C929;
+    position: relative;
+    z-index: 2;
+    width: auto;
+    left: -10;
+    top: -10;
+    padding-left: 10px;
+  }
+
+    .Title p{
+    position: relative;
+    z-index: 3;
+    font-weight: bold;
+    font-size: 40px;
+    color: black;
+  }
+
+  .main{
+    font-size: 25;
+    margin-left: 180px;
+    padding: 0px 10px;
+  }
+
+  </style>
+
+
+
+
+  <head>
+    <meta charset="utf-8">
+    <title>Criminologie Groupe E</title>
+    <link rel="shortcut icon" href="lilicon.png">
+  </head>
+  <body>
+    <div class="Title">
+    <p>Criminologie Groupe E </p>
+    </div>
+
+    <div class="sidebar">
+      <button onclick="Scroll1()" class="side" href="#">Température</button>
+      <button onclick="Scroll2()" class="side" href="#">Calculs</button>
+      <button onclick="Scroll3()" class="side" href="#">Temps de Mort</button>
+    </div>
+
+    <div class="main">
+      <h2 id="sc1">Température</h2>
+      <p>Grâce aux <a href="https://www.infoclimat.fr/observations-meteo/archives/12/septembre/2018/paris-montsouris/07156.html">archives des températures</a> de Paris, nous avons trouvés non seulement la chaleure du matin du 12 septembre, jour du crime, mais aussi la vitesse du vent et si il pleuvait. En effet, entre 10 heure le 11 septembre et 7 heure le 12, heure à laquelle le corps a été trouvé, la température moyenne de l'air était de <span style="color: #ff0000">21 °C</span>. Il ne pleuvait pas, et le vent moyen était de <span style="color: #ff0000">7km/h</span>, donc de l'air en mouvement. </p>
+      <h2 id="sc2">Calculs</h2>
+      <p>Avec ces données et les informations du livret, nous avons utilisé le nomogramme de Henssge pour trouver une approximation de l'heure du décès. L'homme pesait 66kg, était habillé modérément et l'air était en mouvement, ce qui donne un facteur correctif de 1,2. Pour compléter le nomogramme, il faut d'abord relier la température du corps (l'axe de gauche) avec la température ambiente (l'axe de droite), puis on trace la droite partant du point marqué, passant par le croisement entre notre première droite et une droite pré-défini. Pour trouver quand l'homme a été tué, il faut lire sur l'arc correspondant à son poid l'heure marquée. Il faut en suite appliquer le facteur correctif a cette heure trouvée, donc 14h x 1.2 = 16,8.</p><img src="nomogramme.png" width="498" height="641"/>
+      <h2 id="sc3">Temps de mort</h2>
+      <p>Utilisant le nomogramme de Henssge et en ajoutant un intervalle de confiance de ~4,5 heures, nous avons alors trouvé que l'homme a été tué entre 21 heures et 12 heure avant la prise de température.  </p>
+    </div>
+
+
+  <script>
+    function Scroll1(){
+      var elmnt = document.getElementById("sc1");
+      elmnt.scrollIntoView(false);
+      document.getElementById("sc1").style.color = "#83C929";
+      document.getElementById("sc2").style.color = "black";
+      document.getElementById("sc3").style.color = "black";
+    }
+
+    function Scroll2(){
+      var elmnt = document.getElementById("sc2");
+      elmnt.scrollIntoView(false);
+      document.getElementById("sc1").style.color = "black";
+      document.getElementById("sc2").style.color = "#83C929";
+      document.getElementById("sc3").style.color = "black";
+    }
+
+    function Scroll3(){
+      var elmnt = document.getElementById("sc3");
+      elmnt.scrollIntoView(true);
+      document.getElementById("sc1").style.color = "black";
+      document.getElementById("sc2").style.color = "black";
+      document.getElementById("sc3").style.color = "#83C929";
+    }
+
+  </script>
+
+  </body>
+</html>
